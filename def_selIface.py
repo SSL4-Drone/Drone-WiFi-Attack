@@ -1,6 +1,6 @@
 import os
 
-def chkIface():
+def selIface():
     if (os.path.exists('./interface.txt')):
         file = open('./interface.txt', 'r')
         iface = file.readline()

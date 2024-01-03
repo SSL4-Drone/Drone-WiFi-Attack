@@ -1,4 +1,4 @@
-def chkAtkAddr():
+def selMac():
     vicAddr = input('Victim MAC (Empty is broadcast) : ')
     if (vicAddr == ''):
         vicAddr = 'FF:FF:FF:FF:FF:FF'
