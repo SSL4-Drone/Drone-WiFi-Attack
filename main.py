@@ -42,7 +42,7 @@ elif choice == '2':
     vicMac, bssMac = selMac(vicFlag=True, bssFlag=True)
     atkCSA(vicMac, bssMac)
 elif choice == '3':
-# 3. EAPOL Collect (Normal)
+# 3. EAPOL Collect (Normal)8
     collEapol(selMac(bssFlag=True)[1])
 elif choice == '4':
 # 4. EAPOL Collect (Deauth)

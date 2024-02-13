@@ -19,4 +19,4 @@ def atkDeauth(vicAddr:str, bssAddr:str, loopMax=0):
                 break
             # loopMax가 지정되면 특정 횟수만 반복
         else:
-            time.sleep(0.5)
+            time.sleep(0.3)
