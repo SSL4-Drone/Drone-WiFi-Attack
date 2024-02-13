@@ -1,7 +1,6 @@
 
 import os, sys
 from scapy.all import conf
-
 from def_selIface import selIface
 from def_selMac import selMac
 from def_atkDeauth import atkDeauth
@@ -9,6 +8,11 @@ from def_atkCSA import atkCSA
 from def_atkHole196 import atkHole196
 from def_collEapol import collEapol
 from def_convPcap2Hashcat import convPcap2Hashcat
+
+# sudo pip install --upgrade pip
+# sudo pip install https://github.com/secdev/scapy/archive/refs/heads/master.zip
+# sudo pip install pycrypto
+# sudo pip install pycryptodomex
 
 if os.geteuid() != 0:
     sys.exit("Only root can run this script.")

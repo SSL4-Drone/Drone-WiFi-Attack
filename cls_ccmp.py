@@ -22,7 +22,6 @@ class ccmp:
     def encrypt(encKey:bytes, plainData, addr1:str, addr2:str, addr3:str, pn:int):
         ccmpNonce = b"\x00" + mac2bytes(addr2) + struct.pack('>Q', pn)[2:]
             # PN을 6바이트 형식으로 변환 
-            # mac2bytes(BSSID)
             
         print('ccmpNonce : ', hexlify(ccmpNonce).decode('ascii'))
         
