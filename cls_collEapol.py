@@ -1,4 +1,3 @@
-
 from scapy.all import sniff
 from scapy.layers.dot11 import Dot11
 from scapy.layers.eap import EAPOL, EAPOL_KEY

