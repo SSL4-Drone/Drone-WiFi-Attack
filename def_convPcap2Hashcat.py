@@ -1,4 +1,4 @@
-from cls_collPcap import collPcap
+from cls_collPcapFile import collPcap
 
 def convPcap2Hashcat(pcapPath:str, hcPath:str):
     collCls = collPcap()
